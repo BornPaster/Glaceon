@@ -25,10 +25,10 @@ __Example Usage Of Glaceon Flask:__
 ```py
 from flask import Flask
 from waitress import serve
-from glaceon import Glaceon, FlaskGlaceon
+from glaceon import cli, FlaskGlaceon
 app = Flask(__name__)
 
-g = Glaceon(debug=True, speed=2)
+g = cli(debug=True, speed=2)
 
 flask_g = FlaskGlaceon(g)
 
