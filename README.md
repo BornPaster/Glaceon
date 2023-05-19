@@ -19,9 +19,29 @@ g.print("SUCCESS", "This is a success message")
 g.print("DEBUG", "This is a debug message")
 ```
 
-__Output:__ 
+__Example Usage Of Glaceon Flask:__
 
-*https://media.discordapp.net/attachments/1106381310085308416/1107275928066850886/Screenshot_2023-05-14_055856.png*
+
+```py
+from flask import Flask
+from waitress import serve
+from glaceon import Glaceon, FlaskGlaceon
+app = Flask(__name__)
+
+g = Glaceon(debug=True, speed=2)
+
+flask_g = FlaskGlaceon(g)
+
+@app.route('/')
+def hello_world():
+    flask_g.info("Received a request.")
+    return 'Hello, World!'
+
+
+if __name__ == '__main__':
+    serve(app, host='0.0.0.0', port=8080)
+
+```
 
 
 > __`debug=True` is if you wanna put debug messages inbetween functions and lines of code. Instead of having to delete all the debug messages you put in the code, you can simply turn the debug value to `False` which makes the debug messages not visible. You can simply turn them back on by turning the debug value back to `True`.__
